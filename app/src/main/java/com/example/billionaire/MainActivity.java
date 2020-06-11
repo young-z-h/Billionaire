@@ -54,10 +54,8 @@ public class MainActivity extends AppCompatActivity {
     private int recentPosition = 0;
 
     //    deleted by young
-    private int initPosition = 0;
+//    private int initPosition = 0;
 
-//    private LayerDrawable userLayerDrawable;
-//    private LayerDrawable bomberLayerDrawable;
 
     // 掷骰子部分使用例程方式
     // 乱
@@ -76,7 +74,8 @@ public class MainActivity extends AppCompatActivity {
                         if (recentPosition==13) {
                             Toast.makeText(MainActivity.this, "游戏胜利", Toast.LENGTH_SHORT).show();
                             textResult.setText("游戏胜利！");
-                        }break;
+                        }
+                        break;
                     case 0x444:imageViews[++recentPosition].setImageResource(R.drawable.booom);break;
                     case 0x555:imageViews[++recentPosition].setImageResource(R.drawable.userback);break;
                     case 0x666:
@@ -89,15 +88,7 @@ public class MainActivity extends AppCompatActivity {
                 }
 
             }
-            if (msg.what == 0x801) {
-                textResult.setText("恭喜你801，成功过关!" );
-            }else if (msg.what == 0x448) {
-                textResult.setText("游戏失败" );
-                Log.i("最后一步448 handler 的位置是:", (recentPosition + 1) + "");
-                Toast.makeText(getApplicationContext(), "游戏失败", Toast.LENGTH_SHORT).show();
-            }else{
-                textResult.setText("摇骰子，还剩下" + vcount + "次机会, 生命值为" + strength);
-            }
+            textResult.setText("摇骰子，还剩下" + vcount + "次机会, 生命值为" + strength);
         }
     };
 
@@ -109,7 +100,6 @@ public class MainActivity extends AppCompatActivity {
 //        beginStatus = true;
         buttonOk = (Button) findViewById(R.id.buttonOK);
         image1 = (ImageView) findViewById(R.id.image1);
-
         textResult = (TextView) findViewById(R.id.textResult);
 
         for (int i = 0; i < imageViews.length; i++) imageViews[i] = (ImageView)findViewById(R.id.i001 + i);
@@ -121,12 +111,9 @@ public class MainActivity extends AppCompatActivity {
 //                    status2=100;
                     status=0;
 
-                    new Thread()
-                    {
-                        public void run()
-                        {
-                            while ( status < 15 )
-                            {
+                    new Thread() {
+                        public void run() {
+                            while (status < 15) {
                                 mHandler.sendEmptyMessage(0x111);   // 发送消息
                                 status = doWork1();
                             }
@@ -134,17 +121,12 @@ public class MainActivity extends AppCompatActivity {
                             for (int i = 0; i < vrandom; i++) {
                                 doWork();
                                 if (recentPosition==12)break;
-
                                 mHandler.sendEmptyMessage(0x333);
-
                             }
-
 
                             if (recentPosition!=13) {
                                 doWork();
                                 // 最后一步
-                                Log.i("最后一步的位置是:", (recentPosition + 1) + "");
-
                                 Object lastTag = imageViews[recentPosition + 1].getTag();
                                 if (lastTag==null) {
                                     mHandler.sendEmptyMessage(0x333);
@@ -181,56 +163,21 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
-
     }
 
-
     // 模拟一个耗时的操作
-    public int doWork1()
-    {   // 为数组元素赋值  // data[hasData++] = (int) (Math.random() * 100);
+    public int doWork1() {   // 为数组元素赋值  // data[hasData++] = (int) (Math.random() * 100);
         status++;
-        try
-        {
+        try {
             Thread.sleep(50);  //	*休眠50毫秒,即让该线程休眠 50毫秒，再继续执行该线程。
         }
-        catch (InterruptedException e)//捕获该异常  保证程序正常的中断。
-        {
+        catch (InterruptedException e){
             e.printStackTrace();
         }
         return status;
     }
 
-    public void doWork() {
-        try {Thread.sleep(500);} catch (InterruptedException e) {e.printStackTrace();}
-    }
+    public void doWork() { try {Thread.sleep(500);} catch (InterruptedException e) {e.printStackTrace();} }
 
-
-//    /**
 //     * int originalResourse = imageViews[recentPosition].getTag()==null?R.drawable.buttom:("back".equals(imageViews[recentPosition].getTag())?R.drawable.back:(recentPosition>9?R.drawable.forward:R.drawable.back));
-//     * @param position
-//     * @return
-//     */
-//    private int getResource(int position){
-//        if ("back".equals(imageViews[position].getTag())) {
-//            return R.drawable.back;
-//        }else if ("forward".equals(imageViews[position].getTag())){
-//            if (position<9) return R.drawable.back;
-//            else return R.drawable.forward;
-////        }else if ("bomb".equals(imageViews[position].getTag())) {
-////            return R.drawable.bomb;//炸弹，应该是一次性
-//        }else return R.drawable.buttom;
-//    }
-
-
-//    /**
-//     * 或者每次移动之后修改前/后一个
-//     * 这种方式效率比较低
-//     * @param position
-//     */
-//    private void reInit(int position) {
-//        for (int i = 0; i < position; i++) {
-//            imageViews[i].setImageResource(getResource(i));
-//        }
-//    }
 }
-
