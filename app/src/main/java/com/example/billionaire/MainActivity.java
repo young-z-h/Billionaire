@@ -71,56 +71,59 @@ public class MainActivity extends AppCompatActivity {
                 vrandom = ( (int) (Math.random()*200+1))%6;
 //                    vrandom = 0;
                 image1.setImageResource(imagesarr[vrandom]);
-            }else if (msg.what == 0x333) {
+            }else {
+                imageViews[recentPosition].setImageResource(ImageViewInt[recentPosition]);
+                if (msg.what == 0x333) {
 //                    if (recentPosition>0) imageViews[recentPosition-1].setImageResource(getResource(recentPosition-1));
 //                    imageViews[recentPosition++].setImageResource(R.drawable.buttom);
-                //modified by HGY
-                imageViews[recentPosition].setImageResource(ImageViewInt[recentPosition]);
-                recentPosition++;
-                imageViews[recentPosition].setImageResource(R.drawable.userposition);
+                    //modified by HGY
+//                    imageViews[recentPosition].setImageResource(ImageViewInt[recentPosition]);
+                    recentPosition++;
+                    imageViews[recentPosition].setImageResource(R.drawable.userposition);
 
-                if (recentPosition==13) {
-                    Toast.makeText(MainActivity.this, "游戏胜利333", Toast.LENGTH_SHORT).show();
-                    textResult.setText("游戏胜利333！");
-                }
+                    if (recentPosition==13) {
+                        Toast.makeText(MainActivity.this, "游戏胜利333", Toast.LENGTH_SHORT).show();
+                        textResult.setText("游戏胜利333！");
+                    }
 
 //                    initPosition = recentPosition - 1;
-            } else if (msg.what == 0x444) {
-                // 遇到炸弹的情况
+                } else if (msg.what == 0x444) {
+                    // 遇到炸弹的情况
 //                    imageViews[recentPosition++].setImageResource(R.drawable.buttom);
 //                    imageViews[recentPosition].setImageResource(R.drawable.booom);
-                //modified by HGY
-                imageViews[recentPosition].setImageResource(ImageViewInt[recentPosition]);
-                recentPosition++;
+                    //modified by HGY
+//                    imageViews[recentPosition].setImageResource(ImageViewInt[recentPosition]);
+                    recentPosition++;
 //                    deleted by young
 //                    ImageViewInt[recentPosition]=R.drawable.booom;
-                imageViews[recentPosition].setImageResource(R.drawable.booom);
+                    imageViews[recentPosition].setImageResource(R.drawable.booom);
 
 //                    Toast.makeText(MainActivity.this, "遇到炸弹！！", Toast.LENGTH_SHORT).show();
-            } else if (msg.what == 0x555) {  //后退2步
+                } else if (msg.what == 0x555) {  //后退2步
 //                    imageViews[recentPosition++].setImageResource(R.drawable.buttom);
-                //modified by HGY
-                imageViews[recentPosition].setImageResource(ImageViewInt[recentPosition]);
-                recentPosition++;
+                    //modified by HGY
+//                    imageViews[recentPosition].setImageResource(ImageViewInt[recentPosition]);
+                    recentPosition++;
 //                    delete by yzh
 //                    imageViews[recentPosition].setImageResource(R.drawable.userposition);
 
-                imageViews[recentPosition].setImageResource(R.drawable.userback);
+                    imageViews[recentPosition].setImageResource(R.drawable.userback);
 //                    Toast.makeText(MainActivity.this, "后退两格！", Toast.LENGTH_SHORT).show();
-            } else if (msg.what == 0x666) { //前进2步
+                } else if (msg.what == 0x666) { //前进2步
 //                    imageViews[recentPosition++].setImageResource(R.drawable.buttom);
-                imageViews[recentPosition].setImageResource(ImageViewInt[recentPosition]);
-                recentPosition++;
-                if (recentPosition > 9)
-                    imageViews[recentPosition].setImageResource(R.drawable.userforward);
-                else imageViews[recentPosition].setImageResource(R.drawable.userback);
+//                    imageViews[recentPosition].setImageResource(ImageViewInt[recentPosition]);
+                    recentPosition++;
+                    if (recentPosition > 9)
+                        imageViews[recentPosition].setImageResource(R.drawable.userforward);
+                    else imageViews[recentPosition].setImageResource(R.drawable.userback);
 //                    Toast.makeText(MainActivity.this, "前进两格！", Toast.LENGTH_SHORT).show();
-            } else if (msg.what == 0x777) {
+                } else if (msg.what == 0x777) {
 //                    imageViews[recentPosition--].setImageResource(R.drawable.buttom);
-                //modified by HGY
-                imageViews[recentPosition].setImageResource(ImageViewInt[recentPosition]);
-                recentPosition--;
-                imageViews[recentPosition].setImageResource(R.drawable.userposition);
+                    //modified by HGY
+//                    imageViews[recentPosition].setImageResource(ImageViewInt[recentPosition]);
+                    recentPosition--;
+                    imageViews[recentPosition].setImageResource(R.drawable.userposition);
+                }
             }
             if (msg.what == 0x801) {
                 textResult.setText("恭喜你801，成功过关!" );
