@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
             R.drawable.c6,
     };
     //add by HGY
-    private int[] ImageViewInt = new int[]{
+    private int[] imageViewInt = new int[]{
             R.drawable.buttom,
             R.drawable.buttom,
             R.drawable.back,
@@ -72,14 +72,14 @@ public class MainActivity extends AppCompatActivity {
 //                    vrandom = 0;
                 image1.setImageResource(imagesarr[vrandom]);
             }else {
-                imageViews[recentPosition].setImageResource(ImageViewInt[recentPosition]);
+                imageViews[recentPosition].setImageResource(imageViewInt[recentPosition]);
                 if (msg.what == 0x333) {
 //                    if (recentPosition>0) imageViews[recentPosition-1].setImageResource(getResource(recentPosition-1));
 //                    imageViews[recentPosition++].setImageResource(R.drawable.buttom);
                     //modified by HGY
-//                    imageViews[recentPosition].setImageResource(ImageViewInt[recentPosition]);
-                    recentPosition++;
-                    imageViews[recentPosition].setImageResource(R.drawable.userposition);
+//                    imageViews[recentPosition].setImageResource(imageViewInt[recentPosition]);
+//                    recentPosition++;
+                    imageViews[++recentPosition].setImageResource(R.drawable.userposition);
 
                     if (recentPosition==13) {
                         Toast.makeText(MainActivity.this, "游戏胜利333", Toast.LENGTH_SHORT).show();
@@ -92,37 +92,37 @@ public class MainActivity extends AppCompatActivity {
 //                    imageViews[recentPosition++].setImageResource(R.drawable.buttom);
 //                    imageViews[recentPosition].setImageResource(R.drawable.booom);
                     //modified by HGY
-//                    imageViews[recentPosition].setImageResource(ImageViewInt[recentPosition]);
-                    recentPosition++;
+//                    imageViews[recentPosition].setImageResource(imageViewInt[recentPosition]);
+//                    recentPosition++;
 //                    deleted by young
-//                    ImageViewInt[recentPosition]=R.drawable.booom;
-                    imageViews[recentPosition].setImageResource(R.drawable.booom);
+//                    imageViewInt[recentPosition]=R.drawable.booom;
+                    imageViews[++recentPosition].setImageResource(R.drawable.booom);
 
 //                    Toast.makeText(MainActivity.this, "遇到炸弹！！", Toast.LENGTH_SHORT).show();
                 } else if (msg.what == 0x555) {  //后退2步
 //                    imageViews[recentPosition++].setImageResource(R.drawable.buttom);
                     //modified by HGY
-//                    imageViews[recentPosition].setImageResource(ImageViewInt[recentPosition]);
-                    recentPosition++;
+//                    imageViews[recentPosition].setImageResource(imageViewInt[recentPosition]);
+//                    recentPosition++;
 //                    delete by yzh
 //                    imageViews[recentPosition].setImageResource(R.drawable.userposition);
 
-                    imageViews[recentPosition].setImageResource(R.drawable.userback);
+                    imageViews[++recentPosition].setImageResource(R.drawable.userback);
 //                    Toast.makeText(MainActivity.this, "后退两格！", Toast.LENGTH_SHORT).show();
                 } else if (msg.what == 0x666) { //前进2步
 //                    imageViews[recentPosition++].setImageResource(R.drawable.buttom);
-//                    imageViews[recentPosition].setImageResource(ImageViewInt[recentPosition]);
-                    recentPosition++;
-                    if (recentPosition > 9)
+//                    imageViews[recentPosition].setImageResource(imageViewInt[recentPosition]);
+//                    recentPosition++;
+                    if (++recentPosition > 9)
                         imageViews[recentPosition].setImageResource(R.drawable.userforward);
                     else imageViews[recentPosition].setImageResource(R.drawable.userback);
 //                    Toast.makeText(MainActivity.this, "前进两格！", Toast.LENGTH_SHORT).show();
                 } else if (msg.what == 0x777) {
 //                    imageViews[recentPosition--].setImageResource(R.drawable.buttom);
                     //modified by HGY
-//                    imageViews[recentPosition].setImageResource(ImageViewInt[recentPosition]);
-                    recentPosition--;
-                    imageViews[recentPosition].setImageResource(R.drawable.userposition);
+//                    imageViews[recentPosition].setImageResource(imageViewInt[recentPosition]);
+//                    recentPosition--;
+                    imageViews[--recentPosition].setImageResource(R.drawable.userposition);
                 }
             }
             if (msg.what == 0x801) {
