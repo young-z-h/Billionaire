@@ -52,14 +52,10 @@ public class MainActivity extends AppCompatActivity {
     private int strength = 2;
     private int recentPosition = 0;
 
-    //    deleted by young
-//    private int initPosition = 0;
-
-
     // 掷骰子部分使用例程方式
     Handler mHandler = new Handler()
     {
-        @Override//
+        @Override//结构可以修改
         public void handleMessage(Message msg) {
             if (msg.what == 0x111){
                 vrandom = ( (int) (Math.random()*200+1))%6;
@@ -83,10 +79,19 @@ public class MainActivity extends AppCompatActivity {
                             imageViews[recentPosition].setImageResource(R.drawable.userback);
                         break;
                     case 0x777:imageViews[--recentPosition].setImageResource(R.drawable.userposition);
-                }
 
+                }
             }
-            textResult.setText("摇骰子，还剩下" + vcount + "次机会, 生命值为" + strength);
+
+//            textResult.setText("摇骰子，还剩下" + vcount + "次机会, 生命值为" + strength);
+            if (msg.what == 0x801) {
+                textResult.setText("恭喜你，成功过关!" );
+            }else if (msg.what == 0x448) {
+                textResult.setText("游戏失败" );
+                Toast.makeText(getApplicationContext(), "游戏失败", Toast.LENGTH_SHORT).show();
+            }else{
+                textResult.setText("摇骰子，还剩下" + vcount + "次机会, 生命值为" + strength);
+            }
         }
     };
 
@@ -100,14 +105,14 @@ public class MainActivity extends AppCompatActivity {
         image1 = (ImageView) findViewById(R.id.image1);
         textResult = (TextView) findViewById(R.id.textResult);
 
-        for (int i = 0; i < imageViews.length; i++)
-            imageViews[i] = (ImageView)findViewById(R.id.i001 + i);
+        for (int i = 0; i < imageViews.length; i++) imageViews[i] = (ImageView)findViewById(R.id.i001 + i);
 
         buttonOk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (vcount-->0 && strength > 0 && recentPosition!=13) {
-//                    status2=100;
+                if (vcount>0 && strength > 0 && recentPosition!=13) {
+//                    statu-s2=100;
+                    vcount--;
                     status=0;
 
                     new Thread() {
@@ -149,17 +154,17 @@ public class MainActivity extends AppCompatActivity {
                                         mHandler.sendEmptyMessage(0x333);
                                     }
                                 }
+                                // 注意线程问题
+                                if (recentPosition==13) mHandler.sendEmptyMessage(0x801);
+                                else if (strength == 0 || vcount == 0) mHandler.sendEmptyMessage(0x448);
                             }
                         }
                     }.start();
                 }
+                // 再改
                 if (recentPosition==13) {
                     Toast.makeText(MainActivity.this, "游戏胜利", Toast.LENGTH_SHORT).show();
-                    buttonOk.setText("游戏胜利！");
-                }
-                else if (strength == 0 || vcount == 0) {
-                    Toast.makeText(getApplicationContext(), "游戏失败", Toast.LENGTH_SHORT).show();
-                    buttonOk.setText("游戏失败");
+                    textResult.setText("游戏胜利！");
                 }
             }
         });
