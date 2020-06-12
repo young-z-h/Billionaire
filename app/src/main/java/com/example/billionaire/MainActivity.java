@@ -111,7 +111,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (vcount>0 && strength > 0 && recentPosition!=13) {
-//                    statu-s2=100;
                     vcount--;
                     status=0;
 
