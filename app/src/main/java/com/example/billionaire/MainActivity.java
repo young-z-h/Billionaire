@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
@@ -58,7 +57,6 @@ public class MainActivity extends AppCompatActivity {
 
 
     // 掷骰子部分使用例程方式
-    // 乱
     Handler mHandler = new Handler()
     {
         @Override//
@@ -102,7 +100,8 @@ public class MainActivity extends AppCompatActivity {
         image1 = (ImageView) findViewById(R.id.image1);
         textResult = (TextView) findViewById(R.id.textResult);
 
-        for (int i = 0; i < imageViews.length; i++) imageViews[i] = (ImageView)findViewById(R.id.i001 + i);
+        for (int i = 0; i < imageViews.length; i++)
+            imageViews[i] = (ImageView)findViewById(R.id.i001 + i);
 
         buttonOk.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -157,7 +156,8 @@ public class MainActivity extends AppCompatActivity {
                 if (recentPosition==13) {
                     Toast.makeText(MainActivity.this, "游戏胜利", Toast.LENGTH_SHORT).show();
                     buttonOk.setText("游戏胜利！");
-                } else if (strength == 0 || vcount == 0) {
+                }
+                else if (strength == 0 || vcount == 0) {
                     Toast.makeText(getApplicationContext(), "游戏失败", Toast.LENGTH_SHORT).show();
                     buttonOk.setText("游戏失败");
                 }
